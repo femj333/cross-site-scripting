@@ -1,0 +1,63 @@
+<html>
+<head>
+    <title>Comment Page!</title>
+    <style>
+        .hidden { display: none; } 
+        #comment-list { border-top: 1px solid #ccc; margin-top: 20px; }
+        .comment { background: #f4f4f4; padding: 10px; margin: 5px 0; }
+    </style>
+</head>
+<body>
+    <h1>Comment Page!</h1>
+
+    <div id="login-section">
+        <input type="text" id="username" placeholder="Enter your name">
+        <button onclick="login()">Login</button>
+    </div>
+
+    <div id="main-content" class="hidden">
+        <p>Welcome, <span id="display-name"></span>!</p>
+        
+        <textarea id="comment-input" placeholder="Write a comment..."></textarea><br>
+        <button onclick="addComment()">Post Comment</button>
+
+        <h3>Comments:</h3>
+        <div id="comment-list">
+            </div>
+    </div>
+
+    <script>
+        let currentUser = "";
+
+        function login() {
+            const nameInput = document.getElementById('username').value;
+            if (nameInput.trim() !== "") {
+                currentUser = nameInput;
+                document.getElementById('display-name').innerText = currentUser;
+                
+                // now hide the login and show the comments
+                document.getElementById('login-section').classList.add('hidden');
+                document.getElementById('main-content').classList.remove('hidden');
+            }
+        }
+
+        function addComment() {
+            const text = document.getElementById('comment-input').value;
+            if (text.trim() === "") return;
+
+            const list = document.getElementById('comment-list');
+            
+            // new div for the comment
+            const newComment = document.createElement('div');
+            newComment.className = 'comment';
+            newComment.innerHTML = `<strong>${currentUser}:</strong> <p>${text}</p>`;
+            
+            // put comment at top of list
+            list.prepend(newComment);
+            
+            // clear input
+            document.getElementById('comment-input').value = "";
+        }
+    </script>
+</body>
+</html>
