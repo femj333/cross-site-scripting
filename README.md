@@ -1,7 +1,7 @@
 Mia Frattasio, Fem Jansen, Craig Salois
 
 Page Title
-~Brief secription~
+Brief secription
 
 
 How To Run:
