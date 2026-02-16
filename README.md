@@ -7,7 +7,8 @@ How To Run:
 1. Enter the following command in the terminal: npx server .
 2. Go to http://localhost:3000/ in your local browser
 
-Some Examples of XSS Vulnerabilities
+<b>Some Examples of XSS Vulnerabilities</b?    
+
 In the comment box enter:
 ```html
 <img src="x" onerror="alert(1)">
@@ -23,3 +24,6 @@ In the comment box enter:
 <a href="javascript:alert(1)">Delicious Chocolate Chip Cookie Recipe</a>
 ```
   - posts a link which when clicked opens alert
+
+<b>Solutions</b>
+1. Use text content instead of innerHTML to treat user input as text
