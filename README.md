@@ -5,5 +5,5 @@ Brief secription
 
 
 How To Run:
-1. Enter the following command in the terminal: npx server .
+1. Enter the following command in the terminal: npx serve .
 2. Go to http://localhost:3000/ in your local browser
