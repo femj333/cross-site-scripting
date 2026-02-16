@@ -50,7 +50,16 @@
             // new div for the comment
             const newComment = document.createElement('div');
             newComment.className = 'comment';
-            newComment.innerHTML = `<strong>${currentUser}:</strong> <p>${text}</p>`;
+
+            // use text content instead of innerHTML to treat user input as text
+            const nameElement = document.createElement("strong");
+            nameElement.textContent = currentUser + ":";
+
+            const p = document.createElement("p");
+            p.textContent = text;
+
+            newComment.appendChild(nameElement);
+            newComment.appendChild(p);
             
             // put comment at top of list
             list.prepend(newComment);
