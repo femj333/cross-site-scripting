@@ -63,47 +63,31 @@
             document.getElementById('comment-input').value = "";
         }
 
-        //vulnerability here!
+        //Fix (treating it as plain text):
         function renderComments(){
             const list = document.getElementById('comment-list');
-            list.innerHTML = ""; 
+            list.innerHTML = "";
+
             allComments.forEach(comment => {
                 const commentDiv = document.createElement('div');
                 commentDiv.className = 'comment';
-                
-                commentDiv.innerHTML = `
-                    <strong>${comment.user}</strong> <small>(${comment.timestamp})</small>
-                    <p>${comment.text}</p>
-                `;
+
+                const strong = document.createElement('strong');
+                strong.textContent = comment.user;
+
+                const small = document.createElement('small');
+                small.textContent = ` (${comment.timestamp})`;
+
+                const p = document.createElement('p');
+                p.textContent = comment.text;  // SAFE
+
+                commentDiv.appendChild(strong);
+                commentDiv.appendChild(small);
+                commentDiv.appendChild(p);
+
                 list.appendChild(commentDiv);
             });
         }
-        //Potential Fix (treating it as plain text):
-        <!-- function renderComments(){
-        const list = document.getElementById('comment-list');
-        list.innerHTML = "";
-
-        allComments.forEach(comment => {
-            const commentDiv = document.createElement('div');
-            commentDiv.className = 'comment';
-
-            const strong = document.createElement('strong');
-            strong.textContent = comment.user;
-
-            const small = document.createElement('small');
-            small.textContent = ` (${comment.timestamp})`;
-
-            const p = document.createElement('p');
-            p.textContent = comment.text;  // SAFE
-
-            commentDiv.appendChild(strong);
-            commentDiv.appendChild(small);
-            commentDiv.appendChild(p);
-
-            list.appendChild(commentDiv);
-        });
-    } -->
-
 
 
         function clearHistory() {
